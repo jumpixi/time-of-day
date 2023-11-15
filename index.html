@@ -40,19 +40,76 @@
 		<h1 class="masthead">Time of Day</h1>
 	</header>
     <main>
-	 <header><h3>A JavaScript Project by YOUR NAME HERE</h3></header>
-	    <p>Explain what your page does and how it works here!</p>
-	  <img src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible">
+	 <header><h3>A JavaScript Project by Isaac Uili</h3></header>
+	 	<h3 id="my-greeting">Greeting goes here</h3>
+	    <p>This page changes based off whether it is morning or afternoon by utilizing JavaScript!</p>
+	  <img src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible" id="my-pic">
      <footer>
       <p><small>&copy; 2022 by 
-          YOUR NAME HERE, All Rights Reserved ~ 
+          Isaac Uili, All Rights Reserved ~ 
           <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
           <a id="css-checker" href="#" target="_blank">Check CSS</a></small>
      </p>
     </footer>
   </main>
  <script>
-    document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
+    
+	/*
+
+		Deliverable: Create a web page that uses JavaScript to determine the current hour, and presents a different image, custom message, and color based on each of the following times of day:
+
+		Morning (5am to 12 noon)
+		Afternoon (12 noon to 6pm)
+		Evening (6pm to 11pm)
+		Night (11pm to 5am)
+		Criteria: The three items above (color, image, message) must be unique for each of the 4 time periods of the day.
+
+
+	*/
+
+
+
+
+	let myDate = new Date();
+	let myHour = myDate.getHours();
+	let myGreeting = "";
+	let myColor = "";
+	let myPic = "";
+
+	//TESTING ONLY REMOVE THE FOLLOWING LINE
+	//myHour = 6;
+
+
+	if(myHour > 5 && myHour < 12){//morning
+		myGreeting = "Good Morning!";
+		myColor = "purple";
+		myPic = "morning.jpg";
+	} else if(myHour >= 12 && myHour <18){
+		myGreeting = "Good Afternoon!";
+		myColor = "orange";
+		myPic = "afternoon.jpg";
+	}else{//night
+		myGreeting = "Good Night!";
+		myColor = "black";
+		myPic = "afternoon.jpg";
+		
+	}
+
+	//prepend path to image
+	myPic = "images/" + myPic;
+	//custom greeting
+	document.getElementById("my-greeting").innerHTML = myGreeting;
+
+
+	document.querySelector("html").style.backgroundColor = myColor;
+
+
+	document.getElementById("my-pic").src = myPic;
+	
+	
+	
+	
+	document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
     document.getElementById("css-checker").setAttribute("href","https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);  
  </script>
 </body>
