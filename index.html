@@ -23,6 +23,11 @@
 			max-width:300px; /* actual size of image */
 			width:33%; /* approximate size taken on screen in maximum view */
 		}
+		span#computer-code{
+			font-family:'Courier New', Courier, monospace;
+			background-color: black;
+			color:white;
+		}
 		p {margin:10px;}
 		h1,h2,h3,h4,h5,h6{
 			font-weight:normal;
@@ -32,6 +37,11 @@
 		footer {
 			text-align:center;
 			clear:both; /* ride below all items */
+		}
+		li{
+			box-sizing: content-box;
+			list-style-position: inside;
+			
 		}
     </style>
 </head>
@@ -43,9 +53,21 @@
 	 <header><h3>A JavaScript Project by Isaac Uili</h3></header>
 	 	<h3 id="my-greeting">Greeting goes here</h3>
 	    <p>This page changes based off the time of day by utilizing JavaScript!</p>
+		<p>We are doing this by setting these times:		
+			<ul>
+				<li>Morning (5am to 12 noon)</li>
+				<li>Afternoon (12 noon to 6pm)</li>
+				<li>Evening (6pm to 11pm)</li>
+				<li>Night (11pm to 5am)</li>
+			<ul>
+		</p>
+		<p>Then we change the color, image, message to be unique for each of the 4 time periods of the day.</p>
+		<p>The JavaScript written is connected through the HTML <span id="computer-code"> ID</span>  attribute within our HTML code. </p>
+		<p>By using <span id="computer-code">document.getElementById</span> we can connect this with our JavaScript code.</p>
+		<p>The JavaScript code gets the time from the browser-user and uses it to assign the pages current look.<p>
 	  <img src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible" id="my-pic">
      <footer>
-      <p><small>&copy; 2022 by 
+      <p><small>&copy; 2022-<span id="current-year"></span> by 
           Isaac Uili, All Rights Reserved ~ 
           <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
           <a id="css-checker" href="#" target="_blank">Check CSS</a></small>
@@ -77,17 +99,21 @@
 	let myPic = "";
 
 	//TESTING ONLY REMOVE THE FOLLOWING LINE
-	//myHour = 6;
+	myHour = 19;
 
 
 	if(myHour > 5 && myHour < 12){//morning
 		myGreeting = "Good Morning!";
-		myColor = "purple";
+		myColor = "orange";
 		myPic = "morning.jpg";
 	} else if(myHour >= 12 && myHour <18){//afternoon
 		myGreeting = "Good Afternoon!";
-		myColor = "orange";
+		myColor = "lightblue";
 		myPic = "afternoon.jpg";
+	} else if(myHour >= 18 && myHour <23){//evening
+		myGreeting = "Good Evening!";
+		myColor = "purple";
+		myPic = "evening.jpg";
 	}else{//night
 		myGreeting = "Good Night!";
 		myColor = "black";
@@ -106,7 +132,7 @@
 
 	document.getElementById("my-pic").src = myPic;
 	
-	
+	document.getElementById("current-year").innerHTML = myDate.getFullYear();
 	
 	
 	document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
